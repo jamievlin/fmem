@@ -15,12 +15,6 @@ else()
     set(FMEM_LIBRARY_TYPE SHARED)
 endif()
 
-if (POLICY CMP0048)
-  # cmake warns if fmem is included from a parent directory whose CMakeLists.txt
-  # requires a CMake version of 3.0 or later
-  cmake_policy(SET CMP0048 NEW)
-endif()
-
 project (fmem C)
 list (APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/.cmake")
 
