@@ -2,7 +2,7 @@
 # Redistribution and use of this file is allowed according to the terms of the MIT license.
 # For details see the LICENSE file distributed with Mimick.
 
-cmake_minimum_required (VERSION 2.8.12)
+cmake_minimum_required (VERSION 3.22.0)
 
 option(BUILD_SHARED_LIBS "Build shared library." OFF)
 # Add an option to control whether to build static or shared library
@@ -146,7 +146,7 @@ install(TARGETS fmem
 install(FILES
    ${PROJECT_BINARY_DIR}/gen/fmem.h
    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
-   
+
 # Check if this is the main project and BUILD_TESTING was not already set by the user
 if("${CMAKE_SOURCE_DIR}" STREQUAL "${PROJECT_SOURCE_DIR}" AND NOT DEFINED BUILD_TESTING)
     message(WARNING "Detected that we're only compiling this project. BUILD_TESTING was not explicitly set, defaulting to BUILD_TESTING=ON. To disable testing, set BUILD_TESTING=OFF.")
@@ -158,12 +158,12 @@ if (WIN32)
 else()
     set(LIB_EXT ".a")
 endif()
-  
+
 if ("${CMAKE_SOURCE_DIR}" STREQUAL "${PROJECT_SOURCE_DIR}" AND BUILD_TESTING)
     find_package(Criterion QUIET)
     if (NOT CRITERION_FOUND)
         find_program(MESON_FOUND meson)
-          
+
   if(NOT MESON_FOUND)
   message(STATUS "Meson not found. Attempting to call meson --version for debugging.")
   execute_process(
@@ -188,7 +188,7 @@ endif()
 
             # Set include directories and library paths
             set(CRITERION_INCLUDE_DIRS "${PROJECT_SOURCE_DIR}/Criterion/include")
-            set(CRITERION_LIBRARIES "${CMAKE_BINARY_DIR}/Criterion/src/libcriterion${LIB_EXT}")        
+            set(CRITERION_LIBRARIES "${CMAKE_BINARY_DIR}/Criterion/src/libcriterion${LIB_EXT}")
 
             # Check if criterion.h exists in the provided include directory
             if(EXISTS "${CRITERION_INCLUDE_DIRS}/criterion/criterion.h")
